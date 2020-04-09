@@ -14,6 +14,8 @@ namespace WebAPI.Models
         public DbSet<Backup> Backup { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Template> Templates { get; set; }
+        public DbSet<Sources> Sources { get; set;}
+        public DbSet<Network_Logins> Networks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

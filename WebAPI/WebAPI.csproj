@@ -184,6 +184,8 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BackupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NetworkController.cs" />
+    <Compile Include="Controllers\SourceController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\TemplaterController.cs" />
@@ -192,6 +194,7 @@
     </Compile>
     <Compile Include="Models\Backup.cs" />
     <Compile Include="Models\MyContext.cs" />
+    <Compile Include="Models\Network_Logins.cs" />
     <Compile Include="Models\Sources.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Models\User.cs" />

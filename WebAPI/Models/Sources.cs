@@ -8,6 +8,8 @@ namespace WebAPI.Models
     public class Sources
     {
 
-        public int MyProperty { get; set; }
+        public int id { get; set; }
+        public string  Route { get; set; }
+        public int ID_Template { get; set; }
     }
 }
