@@ -6,8 +6,8 @@ using System.Web;
 using WebAPI.Models; 
 namespace WebAPI.Controllers
 {
-    public class BackupController : AbstractController<Backup>
+    public class BackupController 
     {
-                protected override DbSet Set => context.Backup; 
+                
     }
 }

@@ -6,16 +6,16 @@ using System.Web;
 
 namespace WebAPI.Models
 {
-     [Table("Users")]
+     [Table("users")]
     public class User
     {
-        public int id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public bool Active { get; set; }
+        public int id{ get; set; }
+        public string Name{ get; set; }
+        public string Suname { get; set; }
+        public string Username{ get; set; }
+        public string Password{ get; set; }
+        public string Email{ get; set; }
+        
 
 
     }
