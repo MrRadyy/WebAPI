@@ -17,6 +17,6 @@ namespace WebAPI.Models
         public DateTime Made { get; set; }
         public bool Succesful { get; set; }
         public int Job { get; set; }
-        public bool Active { get; set; }
+       
     }
 }

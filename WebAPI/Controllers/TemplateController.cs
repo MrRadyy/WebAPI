@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
-using WebAPI.Models; 
+using WebAPI.Models;
 namespace WebAPI.Controllers
 {
-    public class BackupController :ApiController
+    public class TemplateController : ApiController
     {
         MyContext context = new MyContext();
 
         // GET api/values
-        public IEnumerable<Backup> Get()
+        public IEnumerable<Template> Get()
         {
-            return context.Backup;
+            return context.Templates;
 
         }
 
         // GET api/values/5
-        public Backup Get(int id)
+        public Template Get(int id)
         {
-            return context.Backup.Find(id);
+            return context.Templates.Find(id);
         }
 
         // POST api/values
@@ -38,7 +38,5 @@ namespace WebAPI.Controllers
         public void Delete(int id)
         {
         }
-
-
     }
 }
