@@ -11,6 +11,8 @@ namespace WebAPI.Models
     public class MyContext : DbContext
     {
         
+        public DbSet<Backup> Backup { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
