@@ -25,18 +25,34 @@ namespace WebAPI.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Template template)
         {
+            this.context.Templates.Add(template);
+            this.context.SaveChanges(); 
+
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] Template template)
         {
+            Template current = this.context.Templates.Find(id);
+
+            current.Template_Name = template.Template_Name;
+            current.Type_Of_Backup = template.Type_Of_Backup;
+            current.Source = template.Source;
+            current.Save_Options = template.Save_Options;
+            current.Schedule = template.Schedule; 
+
+
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            Template template = this.context.Templates.Find(id);
+            this.context.Templates.Remove(template); 
+            this.context.SaveChanges(); 
+
         }
     }
 }

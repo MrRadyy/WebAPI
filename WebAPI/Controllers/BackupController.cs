@@ -25,18 +25,38 @@ namespace WebAPI.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Backup backup)
         {
+            this.context.Backup.Add(backup);
+            this.context.SaveChanges(); 
+
+
+
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Backup backup)
         {
+            Backup current = this.context.Backup.Find(id);
+
+            current.Name = backup.Name;
+            current.Size = backup.Size;
+            current.Made = backup.Made;
+            current.Succesful = backup.Succesful;
+            current.Job = backup.Job; 
+
+        
+        
         }
+
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            Backup backup = this.context.Backup.Find(id);
+
+            this.context.Backup.Remove(backup);
+            this.context.SaveChanges();
         }
 
 

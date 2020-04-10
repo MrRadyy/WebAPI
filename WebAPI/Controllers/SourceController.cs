@@ -25,18 +25,30 @@ namespace WebAPI.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody] Sources source)
         {
+            this.context.Sources.Add(source);
+            this.context.SaveChanges(); 
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Sources sources)
         {
+            Sources current = this.context.Sources.Find(id);
+
+            current.Route = sources.Route;
+            current.ID_Template = sources.ID_Template; 
+
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+
+            Sources sources = this.context.Sources.Find(id);
+            this.context.Sources.Remove(sources);
+            this.context.SaveChanges(); 
+
         }
     }
 }

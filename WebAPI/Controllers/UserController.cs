@@ -26,18 +26,37 @@ namespace WebAPI.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]User user)
         {
+            this.context.Users.Add(user);
+            this.context.SaveChanges(); 
+
+
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]User user)
         {
+            User current = this.context.Users.Find(id);
+
+            current.Name = user.Name;
+            current.Suname = user.Suname;
+            current.Password = user.Password;
+            current.Username = user.Suname;
+            current.Email = user.Email;
+            current.Active = user.Active; 
+
+
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            User user = this.context.Users.Find(id);
+
+            this.context.Users.Remove(user);
+            this.context.SaveChanges(); 
+            
         }
 
     }
