@@ -16,6 +16,13 @@ namespace WebAPI.Models
         public DbSet<Template> Templates { get; set; }
         public DbSet<Sources> Sources { get; set;}
         public DbSet<Network_Logins> Networks { get; set; }
+        public DbSet<Computers> Computers { get; set; }
+        public DbSet<Destinations> Destinations { get; set; }
+        public DbSet<FTP_Logins> FTP_Logins { get; set; }
+        public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<Local> Local { get; set; }
+      
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebAPI</RootNamespace>
     <AssemblyName>WebAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,9 +80,6 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -135,6 +133,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -183,7 +182,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BackupController.cs" />
+    <Compile Include="Controllers\ComputersController.cs" />
+    <Compile Include="Controllers\DestinationsController.cs" />
+    <Compile Include="Controllers\FTP_LoginsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\LocalController.cs" />
     <Compile Include="Controllers\NetworkController.cs" />
     <Compile Include="Controllers\SourceController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
@@ -192,6 +196,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Backup.cs" />
+    <Compile Include="Models\Computers.cs" />
+    <Compile Include="Models\Destinations.cs" />
+    <Compile Include="Models\FTP_Logins.cs" />
+    <Compile Include="Models\Jobs.cs" />
+    <Compile Include="Models\Local.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\Network_Logins.cs" />
     <Compile Include="Models\Sources.cs" />
