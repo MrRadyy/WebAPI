@@ -41,8 +41,8 @@ namespace WebAPI.Controllers
 
             current.ID_Computer = jobs.ID_Computer;
             current.ID_Template = jobs.ID_Template;
+            this.context.SaveChanges();
 
-            
 
 
 

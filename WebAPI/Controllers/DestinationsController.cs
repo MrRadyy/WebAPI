@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             current.ID_Template = destinations.ID_Template;
             current.Local = destinations.Local;
             current.Network = destinations.Network;
-
+            this.context.SaveChanges();
 
         }
 

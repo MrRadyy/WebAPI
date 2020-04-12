@@ -43,10 +43,10 @@ namespace WebAPI.Controllers
             current.Size = backup.Size;
             current.Made = backup.Made;
             current.Succesful = backup.Succesful;
-            current.Job = backup.Job; 
+            current.Job = backup.Job;
+            this.context.SaveChanges();
 
-        
-        
+
         }
 
 
