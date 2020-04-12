@@ -37,9 +37,9 @@ namespace WebAPI.Controllers
         {
             Computers current = this.context.Computers.Find(id);
 
-            current.Is_Active = computer.Is_Active;
-            current.Is_allowed = computer.Is_allowed;
-            current.Mac_Address = computer.Mac_Address;
+            current.IsActive = computer.IsActive;
+            current.Isallowed = computer.Isallowed;
+            current.MacAddress = computer.MacAddress;
 
         }
 

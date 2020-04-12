@@ -11,9 +11,9 @@ namespace WebAPI.Models
     public class Computers
     {
         public int id { get; set; }
-        public string Mac_Address { get; set; }
-        public bool Is_Active { get; set; }
-        public bool Is_allowed { get; set; }
+        public string MacAddress { get; set; }
+        public bool IsActive { get; set; }
+        public bool Isallowed { get; set; }
 
 
     }
