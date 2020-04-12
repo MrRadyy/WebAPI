@@ -41,8 +41,8 @@ namespace WebAPI.Controllers
             current.Type_Of_Backup = template.Type_Of_Backup;
             current.Source = template.Source;
             current.Save_Options = template.Save_Options;
-            current.Schedule = template.Schedule; 
-
+            current.Schedule = template.Schedule;
+            this.context.SaveChanges();
 
         }
 

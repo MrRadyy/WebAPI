@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             current.Is_Active = computer.Is_Active;
             current.Is_allowed = computer.Is_allowed;
             current.Mac_Address = computer.Mac_Address;
-
+            this.context.SaveChanges();
         }
 
         // DELETE: api/Computers/5

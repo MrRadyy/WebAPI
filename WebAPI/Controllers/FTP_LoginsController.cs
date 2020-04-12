@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             current.Login = ftplogins.Login;
             current.Password = ftplogins.Password;
             current.Route = ftplogins.Route;
-
+            this.context.SaveChanges();
 
 
         }

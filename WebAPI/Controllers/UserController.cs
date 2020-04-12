@@ -44,8 +44,8 @@ namespace WebAPI.Controllers
             current.Password = user.Password;
             current.Username = user.Suname;
             current.Email = user.Email;
-            current.Active = user.Active; 
-
+            current.Active = user.Active;
+            this.context.SaveChanges();
 
         }
 

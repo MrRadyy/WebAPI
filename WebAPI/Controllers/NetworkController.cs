@@ -39,8 +39,8 @@ namespace WebAPI.Controllers
             current.Network_Login = network.Network_Login;
             current.Network_Password = network.Network_Password;
             current.Network_Route = network.Network_Route;
-            current.Destinations_ID = network.Destinations_ID; 
-
+            current.Destinations_ID = network.Destinations_ID;
+            this.context.SaveChanges();
 
 
         }

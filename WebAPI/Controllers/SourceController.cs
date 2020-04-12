@@ -37,8 +37,8 @@ namespace WebAPI.Controllers
             Sources current = this.context.Sources.Find(id);
 
             current.Route = sources.Route;
-            current.ID_Template = sources.ID_Template; 
-
+            current.ID_Template = sources.ID_Template;
+            this.context.SaveChanges();
         }
 
         // DELETE api/values/5

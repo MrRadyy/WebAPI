@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
 
             current.Destinations_ID = local.Destinations_ID;
             current.Route = local.Route;
-
+            this.context.SaveChanges();
         }
 
         // DELETE: api/Local/5
