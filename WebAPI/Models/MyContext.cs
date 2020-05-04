@@ -21,6 +21,7 @@ namespace WebAPI.Models
         public DbSet<FTP_Logins> FTP_Logins { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Local> Local { get; set; }
+        public DbSet<Tokens> Tokens { get; set; }
       
 
 
