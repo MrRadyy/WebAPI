@@ -10,11 +10,20 @@ namespace WebAPI.Controllers
 {
     public class UserController : ApiController
     {
-        MyContext context = new MyContext(); 
+        MyContext context = new MyContext();
+
+        public bool CheckTok()
+        {
+            return context.Tokens.Select(token => token.text).Contains(this.Request.Headers.GetValues("tok").First());
+        }
+
 
         // GET api/values
         public IEnumerable<User> Get()
         {
+            if (!CheckTok())
+                return null;
+
             return context.Users; 
 
         }
@@ -22,12 +31,18 @@ namespace WebAPI.Controllers
         // GET api/values/5
         public User Get(int id)
         {
+            if (!CheckTok())
+                return null;
+
             return context.Users.Find(id); 
         }
 
         // POST api/values
         public void Post([FromBody]User user)
         {
+            if (!CheckTok())
+                return ;
+
             this.context.Users.Add(user);
             this.context.SaveChanges(); 
 
@@ -37,6 +52,10 @@ namespace WebAPI.Controllers
         // PUT api/values/5
         public void Put(int id, [FromBody]User user)
         {
+
+            if (!CheckTok())
+                return;
+
             User current = this.context.Users.Find(id);
 
             current.Name = user.Name;
@@ -52,6 +71,11 @@ namespace WebAPI.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+
+            if (!CheckTok())
+                return;
+
+
             User user = this.context.Users.Find(id);
 
             this.context.Users.Remove(user);

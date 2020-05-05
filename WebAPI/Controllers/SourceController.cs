@@ -11,9 +11,18 @@ namespace WebAPI.Controllers
     {
         MyContext context = new MyContext();
 
+        public bool CheckTok()
+        {
+            return context.Tokens.Select(token => token.text).Contains(this.Request.Headers.GetValues("tok").First());
+        }
+
         // GET api/values
         public IEnumerable<Sources> Get()
         {
+            if (!CheckTok())
+                return null;
+
+
             return context.Sources;
 
         }
@@ -21,12 +30,19 @@ namespace WebAPI.Controllers
         // GET api/values/5
         public Sources Get(int id)
         {
+            if (!CheckTok())
+                return null;
+
+
             return context.Sources.Find(id);
         }
 
         // POST api/values
         public void Post([FromBody] Sources source)
         {
+            if (!CheckTok())
+                return;
+
             this.context.Sources.Add(source);
             this.context.SaveChanges(); 
         }
@@ -34,6 +50,9 @@ namespace WebAPI.Controllers
         // PUT api/values/5
         public void Put(int id, [FromBody]Sources sources)
         {
+            if (!CheckTok())
+                return;
+
             Sources current = this.context.Sources.Find(id);
 
             current.Route = sources.Route;
@@ -44,6 +63,9 @@ namespace WebAPI.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+            if (!CheckTok())
+                return;
+
 
             Sources sources = this.context.Sources.Find(id);
             this.context.Sources.Remove(sources);

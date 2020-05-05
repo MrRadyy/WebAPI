@@ -18,21 +18,21 @@ namespace WebAPI
 
 
 
-           // config.Routes.MapHttpRoute(
-           //name: "Route",
-           //routeTemplate: "api/{controller}/{action}/{id}",
-           //defaults: new { id = RouteParameter.Optional }
-
-           //);
-
-
-
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+           name: "Route",
+           routeTemplate: "api/{controller}/{action}/{id}",
+           defaults: new { id = RouteParameter.Optional }
+
+           );
+
+
+
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
                      
-                );
+            //    );
 
 
         

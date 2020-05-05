@@ -226,6 +226,7 @@
     <Compile Include="Models\Template.cs" />
     <Compile Include="Models\Tokens.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UsernamePassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TOKENS\TokensGenerateVer.cs" />
   </ItemGroup>

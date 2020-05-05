@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebAPI.Models
 {
 
-    [Table("Backups")]
+    [Table("Tokens")]
     public class Tokens
     {
         public int ID { get; set; }

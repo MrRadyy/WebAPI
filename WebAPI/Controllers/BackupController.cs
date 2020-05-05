@@ -11,9 +11,21 @@ namespace WebAPI.Controllers
     {
         MyContext context = new MyContext();
 
+        public bool CheckTok()
+        {
+           return context.Tokens.Select(token => token.text).Contains(this.Request.Headers.GetValues("tok").First());
+        
+
+        }
+
+
         // GET api/values
         public IEnumerable<Backup> Get()
         {
+            if (!CheckTok())
+                return null;
+
+
             return context.Backup;
 
         }
@@ -21,12 +33,19 @@ namespace WebAPI.Controllers
         // GET api/values/5
         public Backup Get(int id)
         {
+            if (!CheckTok())
+                return null;
+           
+
             return context.Backup.Find(id);
         }
 
         // POST api/values
         public void Post([FromBody]Backup backup)
         {
+            if (!CheckTok()) 
+                return;
+
             this.context.Backup.Add(backup);
             this.context.SaveChanges(); 
 
@@ -37,6 +56,9 @@ namespace WebAPI.Controllers
         // PUT api/values/5
         public void Put(int id, [FromBody]Backup backup)
         {
+            if (!CheckTok())
+                return;
+
             Backup current = this.context.Backup.Find(id);
 
             current.Name = backup.Name;
@@ -53,6 +75,9 @@ namespace WebAPI.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+            if (!CheckTok())
+                return;
+
             Backup backup = this.context.Backup.Find(id);
 
             this.context.Backup.Remove(backup);

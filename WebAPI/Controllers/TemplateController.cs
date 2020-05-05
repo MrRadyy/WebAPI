@@ -11,9 +11,17 @@ namespace WebAPI.Controllers
     {
         MyContext context = new MyContext();
 
+        public bool CheckTok()
+        {
+            return context.Tokens.Select(token => token.text).Contains(this.Request.Headers.GetValues("tok").First());
+        }
+
         // GET api/values
         public IEnumerable<Template> Get()
         {
+            if (!CheckTok())
+                return null;
+
             return context.Templates;
 
         }
@@ -21,12 +29,19 @@ namespace WebAPI.Controllers
         // GET api/values/5
         public Template Get(int id)
         {
+            if (!CheckTok())
+                return null;
+
             return context.Templates.Find(id);
         }
 
         // POST api/values
         public void Post([FromBody]Template template)
         {
+            if (!CheckTok())
+                return ;
+
+
             this.context.Templates.Add(template);
             this.context.SaveChanges(); 
 
@@ -35,6 +50,9 @@ namespace WebAPI.Controllers
         // PUT api/values/5
         public void Put(int id, [FromBody] Template template)
         {
+            if (!CheckTok())
+                return;
+
             Template current = this.context.Templates.Find(id);
 
             current.Template_Name = template.Template_Name;
@@ -49,6 +67,10 @@ namespace WebAPI.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+            if (!CheckTok())
+                return;
+
+
             Template template = this.context.Templates.Find(id);
             this.context.Templates.Remove(template); 
             this.context.SaveChanges(); 

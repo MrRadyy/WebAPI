@@ -11,9 +11,19 @@ namespace WebAPI.Controllers
     {
         MyContext context = new MyContext();
 
+
+        public bool CheckTok()
+        {
+            return context.Tokens.Select(token => token.text).Contains(this.Request.Headers.GetValues("tok").First());
+        }
+
+
         // GET api/values
         public IEnumerable<Network_Logins> Get()
         {
+            if (!CheckTok())
+                return null;
+
             return context.Networks;
 
         }
@@ -21,6 +31,10 @@ namespace WebAPI.Controllers
         // GET api/values/5
         public Network_Logins Get(int id)
         {
+            if (!CheckTok())
+                return null;
+
+
             return context.Networks.Find(id);
         }
 
@@ -35,6 +49,10 @@ namespace WebAPI.Controllers
         // PUT api/values/5
         public void Put(int id, [FromBody]Network_Logins network)
         {
+            if (!CheckTok())
+                return;
+
+
             Network_Logins current = this.context.Networks.Find(id);
             current.Network_Login = network.Network_Login;
             current.Network_Password = network.Network_Password;
@@ -48,6 +66,9 @@ namespace WebAPI.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+            if (!CheckTok())
+                return;
+
             Network_Logins logins = this.context.Networks.Find(id);
             this.context.Networks.Remove(logins);
             this.context.SaveChanges(); 

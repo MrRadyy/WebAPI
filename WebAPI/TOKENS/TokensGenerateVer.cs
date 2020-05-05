@@ -6,18 +6,21 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
+using WebAPI.Models;
 
 namespace WebAPI.TOKENS
 {
-    public class TokensGenerateVer
+    public static class TokensGenerateVer
     {
-        public SecurityToken TK()
+
+        public static Tokens TK()
         {
 
 
+            Tokens token = new Tokens();
 
 
-            SymmetricSecurityKey Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("qzu5_"));
+            SymmetricSecurityKey Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("qzu5fasfsafsaf154456_"));
         SigningCredentials Credentials = new SigningCredentials(Key, SecurityAlgorithms.HmacSha256Signature, SecurityAlgorithms.Sha256Digest);
 
         ClaimsIdentity Identity = new ClaimsIdentity(
@@ -36,8 +39,15 @@ namespace WebAPI.TOKENS
                 Expires = DateTime.Now.AddHours(2)
         };
 
-            return Handler.CreateToken(Descriptor);
 
+            SecurityToken tok =  Handler.CreateToken(Descriptor);
+
+            string Token = Handler.WriteToken(tok);
+
+            token.text = Token;
+            token.life = tok.ValidTo;
+
+            return token;
         }
     }
 }

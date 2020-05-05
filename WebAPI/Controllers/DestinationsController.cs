@@ -12,21 +12,37 @@ namespace WebAPI.Controllers
     {
         MyContext context = new MyContext();
 
+        public bool CheckTok()
+        {
+            return context.Tokens.Select(token => token.text).Contains(this.Request.Headers.GetValues("tok").First());
+        }
+
+
+
         // GET: api/Destinations
         public IEnumerable<Destinations> Get()
         {
+            if (!CheckTok())
+                return null;
+
             return context.Destinations;
         }
 
         // GET: api/Destinations/5
         public Destinations Get(int id)
         {
+            if (!CheckTok())
+                return null;
+
             return context.Destinations.Find(id);
         }
 
         // POST: api/Destinations
         public void Post([FromBody]Destinations destinations)
         {
+            if (!CheckTok())
+                return;
+
             this.context.Destinations.Add(destinations);
             this.context.SaveChanges();
 
@@ -36,6 +52,10 @@ namespace WebAPI.Controllers
         // PUT: api/Destinations/5
         public void Put(int id, [FromBody]Destinations destinations)
         {
+            if (!CheckTok())
+                return;
+
+
             Destinations current = this.context.Destinations.Find(id);
 
             current.FTP = destinations.FTP;
@@ -49,6 +69,10 @@ namespace WebAPI.Controllers
         // DELETE: api/Destinations/5
         public void Delete(int id)
         {
+            if (!CheckTok())
+                return;
+
+
             Destinations destinations = this.context.Destinations.Find(id);
 
             this.context.Destinations.Remove(destinations);
