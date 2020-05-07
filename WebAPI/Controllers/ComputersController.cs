@@ -40,16 +40,33 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/Computers
-        public void Post([FromBody]Computers computer)
+        public int Post([FromBody]Computers computer)
         {
             if (!CheckTok())
-                return ;
+                return -1 ;
 
 
+            
             this.context.Computers.Add(computer);
             this.context.SaveChanges();
+            return computer.id; 
+ //           return context.Computers.ElementAt(context.Computers.Count() - 1).id ; 
+        }
+
+        public IEnumerable<Template> GetTemplates(int id)
+        {
+            if (!CheckTok())
+                return null;
+
+            var temp = from Computers in context.Computers
+                       join Jobs in context.Jobs on Computers.id equals Jobs.ID_Computer
+                       join Template in context.Templates on Jobs.ID_Template equals Template.id
+                       where Computers.id == id
+                       select Template;
+            return temp; 
 
         }
+
 
         // PUT: api/Computers/5
         public void Put(int id, [FromBody]Computers computer)
