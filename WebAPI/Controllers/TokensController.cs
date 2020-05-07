@@ -77,7 +77,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         public string GetToken([FromBody]UsernamePassword uspas)
         {
-       
+
+            var temp = uspas;
 
             User  d =   context.Users.FirstOrDefault(item => item.Username == uspas.Username);
 
@@ -101,16 +102,15 @@ namespace WebAPI.Controllers
 
         }
 
-
-        public void DeleteToken([FromBody]string token)
+        [HttpDelete]
+        public void DeleteToken()
         {
+            string tok = Request.Headers.GetValues("tok").FirstOrDefault();
+            Tokens Tok = this.context.Tokens.FirstOrDefault(item => item.text == tok);
 
-
-            Tokens tok = context.Tokens.FirstOrDefault(item => item.text == token);
-
-            if(tok != null)
+            if(Tok != null)
             {
-                Delete(tok.ID);
+                Delete(Tok.ID);
 
             }
         }
