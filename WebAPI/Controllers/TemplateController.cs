@@ -60,6 +60,7 @@ namespace WebAPI.Controllers
             current.Source = template.Source;
             current.Save_Options = template.Save_Options;
             current.Schedule = template.Schedule;
+            current.Destination = template.Destination; 
             this.context.SaveChanges();
 
         }

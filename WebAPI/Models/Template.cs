@@ -15,5 +15,6 @@ namespace WebAPI.Models
         public string Source { get; set; }
         public string Save_Options { get; set;  }
         public string Schedule { get; set; }
+        public string Destination { get; set; }
     }
 }
