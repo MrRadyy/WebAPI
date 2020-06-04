@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Quartz;
+using Quartz.Impl;
+using WebAPI.Jobsfolder;
 
 namespace WebAPI
 {
@@ -38,7 +41,21 @@ namespace WebAPI
         
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-            config.EnableCors(new EnableCorsAttribute( "http://localhost:4200", "*", "*")); 
+            config.EnableCors(new EnableCorsAttribute( "http://localhost:4200", "*", "*"));
+
+
+            StdSchedulerFactory factory = new StdSchedulerFactory();
+
+            IScheduler scheduler = factory.GetScheduler().GetAwaiter().GetResult();
+
+            IJobDetail jobDetail = JobBuilder.Create<MailJob>().Build();
+
+            ITrigger trigger = TriggerBuilder.Create().StartNow().WithSimpleSchedule(x => x.WithIntervalInSeconds(5)).Build();
+
+
+            scheduler.ScheduleJob(jobDetail, trigger).GetAwaiter().GetResult();
+
+            scheduler.Start().GetAwaiter().GetResult();
         }
     }
 }
