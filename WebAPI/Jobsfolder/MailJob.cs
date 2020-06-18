@@ -13,13 +13,26 @@ namespace WebAPI.Jobsfolder
     {
         MyContext MyContext = new MyContext();
 
-        
+        public string Report ()
+        {
+
+            string Report = "Dnešní provedené backupy"  + Environment.NewLine;
+            List <Backup> temp =MyContext.Backup.ToList();
+            foreach (var item in temp)
+            {
+                Report += item.Name + " " + item.Job + " "+ item.Succesful + Environment.NewLine; 
+              
+            }
+
+            return Report; 
+        }
 
         public Task Execute(IJobExecutionContext context)
         {
-            foreach (var item in MyContext.Users)
+            List<User> users = MyContext.Users.ToList();
+            foreach (var item in users)
             {
-                Mail(item.Email, "123 TEST 123 TEST, ONO TO FUNGUJE :)");
+                Mail(item.Email,Report());
             }
          
             return Task.CompletedTask;
@@ -33,7 +46,7 @@ namespace WebAPI.Jobsfolder
 
             mail.From = new MailAddress("noreply.swombik@gmail.com");
             mail.To.Add(adressTo);
-            mail.Subject = "Test - mailing"; /*PEEPOSAD*/
+            mail.Subject = "Report" + DateTime.Now; ; /*PEEPOHAPPY*/
             mail.Body = message;
 
             SmtpServer.Port = 587;

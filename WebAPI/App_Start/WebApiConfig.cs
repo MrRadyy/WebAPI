@@ -50,7 +50,7 @@ namespace WebAPI
 
             IJobDetail jobDetail = JobBuilder.Create<MailJob>().Build();
 
-            ITrigger trigger = TriggerBuilder.Create().StartNow().WithSimpleSchedule(x => x.WithIntervalInSeconds(5)).Build();
+            ITrigger trigger = TriggerBuilder.Create().StartAt(DateTime.Now.AddSeconds(20)).WithSimpleSchedule(x => x.WithIntervalInSeconds(5)).Build();
 
 
             scheduler.ScheduleJob(jobDetail, trigger).GetAwaiter().GetResult();
